@@ -6,8 +6,19 @@
 	"permissions": [
     "tabs",
 		"scripting",
-		"alarms"
+		"alarms",
+		"activeTab"
 	],
+  "content_scripts":[
+    {
+      "matches":[
+        "https://p.st-secure.freee.co.jp/"
+      ],
+      "js": [
+				"content.js"
+			]
+    }
+  ],
 	"action": {
 		"default_icon": "favicon_180px.png"
    },
