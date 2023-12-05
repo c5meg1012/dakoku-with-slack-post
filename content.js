@@ -1,3 +1,11 @@
+// 位置情報
+let isInOffice = false;
+const successGetPosition = (position) => {
+	console.log(position.coords);
+};
+const position = navigator.geolocation.getCurrentPosition(successGetPosition);
+
+// 出退勤ボタン
 window.onload = () => {
 	setTimeout(() => {
 		const element = document.querySelector('button.vb-button--appearancePrimary');
