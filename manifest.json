@@ -24,5 +24,9 @@
    },
 	"background": {
 		"service_worker": "background.js"
-	}
+	},
+	"host_permissions": [
+		"https://hooks.slack.com/services/*",
+		"https://p.st-secure.freee.co.jp/"
+	]
 }
