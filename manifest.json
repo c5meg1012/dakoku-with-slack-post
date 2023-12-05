@@ -1,0 +1,17 @@
+{
+	"manifest_version": 3,
+	"name": "dakoku-with-slack-post",
+	"version": "0.1",
+	"description": "勤怠打刻の操作と、Slackの投稿と、物理出社の記録を1つのアクションでできるくん(予定)",
+	"permissions": [
+    "tabs",
+		"scripting",
+		"alarms"
+	],
+	"action": {
+		"default_icon": "favicon_180px.png"
+   },
+	"background": {
+		"service_worker": "background.js"
+	}
+}
