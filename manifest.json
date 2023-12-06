@@ -15,7 +15,7 @@
         "https://p.st-secure.freee.co.jp/"
       ],
       "js": [
-				"content.js"
+				"content_freee_hr.js"
 			]
     }
   ],
@@ -26,7 +26,7 @@
 		"service_worker": "background.js"
 	},
 	"host_permissions": [
-		"https://hooks.slack.com/services/*",
+		"https://app.slack.com/client/*",
 		"https://p.st-secure.freee.co.jp/"
 	]
 }
