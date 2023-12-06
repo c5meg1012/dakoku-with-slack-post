@@ -26,8 +26,16 @@ const slackFunc = (args) => {
 		emoji = emoji + ':otsucurry:';
 	}
 
-	// Slack に post する
-	console.log('emoji: ' + emoji);
+	window.onload = () => {
+		const baseTextAreaElement = document.querySelector('div.c-texty_input_unstyled__container');
+		const targetTextArea = baseTextAreaElement.children[0].children[0].children[0];
+		const targetButton = document.querySelector('button.c-wysiwyg_container__button--send');
+		// username は後で localstorage におく
+		const userName = '@meru '
+
+		targetTextArea.innerHTML = userName + emoji;
+		targetButton.click();
+	};
 }
 
 // イベントを受け取る
@@ -38,7 +46,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 			'reason': 'message is missing'
 		});
 	} else {
-		// 出勤/退勤ボタンのイベント
+		// チャンネルIDは後でlocalstorageにおく
 		chrome.tabs.create({ url: 'https://app.slack.com/client/' }, (tab) => {
 			chrome.scripting.executeScript({
 				target: { tabId: tab.id },

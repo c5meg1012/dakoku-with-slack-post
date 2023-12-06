@@ -16,7 +16,7 @@ const successGetPosition = (position) => {
 
 	// 大崎ネストとの距離(km)
 	// const distance = getDistance(position.coords.latitude, position.coords.longitude, 35.6223771,139.7248845); // 大崎ネストに戻ったらこちらを利用する
-	const distance = getDistance(position.coords.latitude, position.coords.longitude, 36.33556235419869, 138.6371057406137); // 軽井沢コテージとの距離
+	const distance = getDistance(position.coords.latitude, position.coords.longitude, 36.3370005, 138.634776); // 軽井沢バンケットとの距離
 
 	if ((distance * 1000) < 200) {
 		isInOffice = true;
