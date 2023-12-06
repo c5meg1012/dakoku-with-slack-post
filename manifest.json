@@ -7,7 +7,8 @@
     "tabs",
 		"scripting",
 		"alarms",
-		"activeTab"
+		"activeTab",
+		"storage"
 	],
   "content_scripts":[
     {
@@ -20,7 +21,9 @@
     }
   ],
 	"action": {
-		"default_icon": "favicon_180px.png"
+		"default_title": "打刻する",
+		"default_icon": "favicon_180px.png",
+		"default_popup": "popup.html"
    },
 	"background": {
 		"service_worker": "background.js"
