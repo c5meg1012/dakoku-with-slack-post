@@ -10,9 +10,10 @@ const getDistance = (lat1, lng1, lat2, lng2) => {
 }
 
 // 位置情報を取得完了してから処理を開始
-const successGetPosition = (position) => {
+const successGetPosition = async (position) => {
 	let isInOffice = false;
 	const isSyukkin = true; // ボタンのテストの時は削除
+	const channelId = (await chrome.storage.local.get('postChannelId'))['postChannelId'];
 
 	// 大崎ネストとの距離(km)
 	// const distance = getDistance(position.coords.latitude, position.coords.longitude, 35.6223771,139.7248845); // 大崎ネストに戻ったらこちらを利用する
@@ -38,6 +39,7 @@ const successGetPosition = (position) => {
 
 	// 出退勤の情報を渡してイベントを送る
 	chrome.runtime.sendMessage({
+		channelId: channelId,
 		isSyukkin: isSyukkin,
 		isInOffice: isInOffice,
 	}, (res) => {

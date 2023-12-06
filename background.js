@@ -1,8 +1,3 @@
-// アイコンをクリックしたら人事労務を開く
-// chrome.action.onClicked.addListener((tab) => {
-// 	chrome.tabs.create({ url: 'https://p.st-secure.freee.co.jp/' });
-// });
-
 const slackFunc = (args) => {
 	const isInOffice = args.isInOffice;
 	const isSyukkin = args.isSyukkin;
@@ -26,14 +21,17 @@ const slackFunc = (args) => {
 		emoji = emoji + ':otsucurry:';
 	}
 
-	window.onload = () => {
+	window.onload = async (e) => {
+		let userName = (await chrome.storage.local.get('postUserName'))['postUserName'];
 		const baseTextAreaElement = document.querySelector('div.c-texty_input_unstyled__container');
 		const targetTextArea = baseTextAreaElement.children[0].children[0].children[0];
-		const targetButton = document.querySelector('button.c-wysiwyg_container__button--send');
-		// username は後で localstorage におく
-		const userName = '@meru '
 
+		userName = '@' + userName + ' ';
 		targetTextArea.innerHTML = userName + emoji;
+
+		const targetButton = document.querySelector('button.c-wysiwyg_container__button--send');
+
+		// ★タイミング次第で押せない
 		targetButton.click();
 	};
 }
@@ -46,8 +44,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 			'reason': 'message is missing'
 		});
 	} else {
-		// チャンネルIDは後でlocalstorageにおく
-		chrome.tabs.create({ url: 'https://app.slack.com/client/' }, (tab) => {
+		const slackUrl = 'https://app.slack.com/client/' + message.channelId;
+		chrome.tabs.create({ url: slackUrl }, (tab) => {
 			chrome.scripting.executeScript({
 				target: { tabId: tab.id },
         func: slackFunc,
