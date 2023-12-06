@@ -12,7 +12,6 @@ const getDistance = (lat1, lng1, lat2, lng2) => {
 // 位置情報を取得完了してから処理を開始
 const successGetPosition = async (position) => {
 	let isInOffice = false;
-	const isSyukkin = true; // ボタンのテストの時は削除
 	const channelId = (await chrome.storage.local.get('postChannelId'))['postChannelId'];
 
 	// 大崎ネストとの距離(km)
@@ -24,52 +23,63 @@ const successGetPosition = async (position) => {
 	}
 
 	// 出退勤ボタンからのアクション
-	// const element = document.querySelector('button.vb-button--appearancePrimary');
+	const element = document.querySelector('button.vb-button--appearancePrimary');
 
-	// if (element.children[0].textContent === '出勤') {
-	// 	element.addEventListener('click', (() => {
-	// 		console.log('出勤ボタンが押されました');
-	// 	}));
-	// }
-	// if (element.children[0].textContent === '退勤') {
-	// 	element.addEventListener('click', (() => {
-	// 		console.log('退勤ボタンが押されました');
-	// 	}));
-	// }
-
-	// 出退勤の情報を渡してイベントを送る
-	chrome.runtime.sendMessage({
-		channelId: channelId,
-		isSyukkin: isSyukkin,
-		isInOffice: isInOffice,
-	}, (res) => {
-		console.log(res);
-	});
+	if (element.children[0].textContent === '出勤') {
+		element.addEventListener('click', (() => {
+			// 出退勤の情報を渡してイベントを送る
+			chrome.runtime.sendMessage({
+				channelId: channelId,
+				isSyukkin: true,
+				isInOffice: isInOffice,
+			}, (res) => {
+				console.log(res);
+			});
+		}));
+	}
+	if (element.children[0].textContent === '退勤') {
+		element.addEventListener('click', (() => {
+			// 出退勤の情報を渡してイベントを送る
+			chrome.runtime.sendMessage({
+				channelId: channelId,
+				isSyukkin: false,
+				isInOffice: isInOffice,
+			}, (res) => {
+				console.log(res);
+			});
+		}));
+	}
 };
 
 // 位置情報が取れなかったら
 const errorGetPosition = (position) => {
 	// 出退勤ボタンからのアクション
-	// const element = document.querySelector('button.vb-button--appearancePrimary');
+	const element = document.querySelector('button.vb-button--appearancePrimary');
 
-	// if (element.children[0].textContent === '出勤') {
-	// 	element.addEventListener('click', (() => {
-	// 		console.log('出勤ボタンが押されました');
-	// 	}));
-	// }
-	// if (element.children[0].textContent === '退勤') {
-	// 	element.addEventListener('click', (() => {
-	// 		console.log('退勤ボタンが押されました');
-	// 	}));
-	// }
-
-	// 出退勤の情報を渡してイベントを送る
-	chrome.runtime.sendMessage({
-		isSyukkin: isSyukkin,
-		isInOffice: null,
-	}, (res) => {
-		console.log(res);
-	});
+	if (element.children[0].textContent === '出勤') {
+		element.addEventListener('click', (() => {
+			// 出退勤の情報を渡してイベントを送る
+			chrome.runtime.sendMessage({
+				channelId: channelId,
+				isSyukkin: true,
+				isInOffice: null,
+			}, (res) => {
+				console.log(res);
+			});
+		}));
+	}
+	if (element.children[0].textContent === '退勤') {
+		element.addEventListener('click', (() => {
+			// 出退勤の情報を渡してイベントを送る
+			chrome.runtime.sendMessage({
+				channelId: channelId,
+				isSyukkin: false,
+				isInOffice: null,
+			}, (res) => {
+				console.log(res);
+			});
+		}));
+	}
 };
 
 navigator.geolocation.getCurrentPosition(successGetPosition, errorGetPosition);

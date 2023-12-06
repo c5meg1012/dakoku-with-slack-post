@@ -21,17 +21,14 @@ const slackFunc = (args) => {
 		emoji = emoji + ':otsucurry:';
 	}
 
-	window.onload = async (e) => {
-		let userName = (await chrome.storage.local.get('postUserName'))['postUserName'];
+	window.onload = () => {
 		const baseTextAreaElement = document.querySelector('div.c-texty_input_unstyled__container');
 		const targetTextArea = baseTextAreaElement.children[0].children[0].children[0];
 
-		userName = '@' + userName + ' ';
-		targetTextArea.innerHTML = userName + emoji;
+		targetTextArea.innerHTML = emoji;
 
 		const targetButton = document.querySelector('button.c-wysiwyg_container__button--send');
 
-		// ★タイミング次第で押せない
 		targetButton.click();
 	};
 }
