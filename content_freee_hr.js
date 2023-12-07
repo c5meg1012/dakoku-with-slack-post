@@ -1,4 +1,5 @@
 // 距離を測る関数
+// https://qiita.com/kawanet/items/a2e111b17b8eb5ac859a
 const R = Math.PI / 180;
 const getDistance = (lat1, lng1, lat2, lng2) => {
   lat1 *= R;
@@ -15,8 +16,7 @@ const successGetPosition = async (position) => {
 	const channelId = (await chrome.storage.local.get('postChannelId'))['postChannelId'];
 
 	// 大崎ネストとの距離(km)
-	// const distance = getDistance(position.coords.latitude, position.coords.longitude, 35.6223771,139.7248845); // 大崎ネストに戻ったらこちらを利用する
-	const distance = getDistance(position.coords.latitude, position.coords.longitude, 36.3370005, 138.634776); // 軽井沢バンケットとの距離
+	const distance = getDistance(position.coords.latitude, position.coords.longitude, 35.6223771,139.7248845);
 
 	if ((distance * 1000) < 200) {
 		isInOffice = true;

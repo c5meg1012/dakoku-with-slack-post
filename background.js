@@ -41,7 +41,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 			'reason': 'message is missing'
 		});
 	} else {
-		const slackUrl = 'https://app.slack.com/client/' + message.channelId;
+		const slackUrl = "https://app.slack.com/client/" + message.channelId;
 		chrome.tabs.create({ url: slackUrl }, (tab) => {
 			chrome.scripting.executeScript({
 				target: { tabId: tab.id },

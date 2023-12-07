@@ -6,9 +6,18 @@
 </head>
 <body>
 	<p class="hello">出社くんの設定をしてください</p>
-	<h3>自分の Slack Display Name</h3>
-	<input id="userName" />
-	<h3>Channel ID（https://app.slack.com/client/の後に続く文字列）</h3>
+	<h3>あいさつ投稿先 Slack Channel の 設定</h3>
+	<p>
+		<ol>
+			<li>
+				<a href="https://slack.com/intl/ja-jp/help/articles/221769328-Slack-URL-%E3%81%BE%E3%81%9F%E3%81%AF-ID-%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B#u21442u21152u20013u12398u12527u12540u12463u12473u12506u12540u12473u12414u12383u12399-org-u12398-id-u12434u30906u35469u12377u12427" target="_blank">Channel ID</a>
+				をコピーしてブラウザのURLバーに貼り付け、ページを開きます
+			</li>
+			<li>
+				表示されたページのURLバーにある【https://app.slack.com/client/】<b>以降</b>の文字列をコピーして入力してください
+			</li>
+		</ol>
+	</p>
 	<input id="channelId" />
 	<button type="submit" id="saveButton">保存</button>
 	<script src="popup.js" defer></script>

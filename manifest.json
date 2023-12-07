@@ -13,7 +13,7 @@
   "content_scripts":[
     {
       "matches":[
-        "https://p.st-secure.freee.co.jp/"
+        "https://p.secure.freee.co.jp/"
       ],
       "js": [
 				"content_freee_hr.js"
@@ -30,6 +30,6 @@
 	},
 	"host_permissions": [
 		"https://app.slack.com/client/*",
-		"https://p.st-secure.freee.co.jp/"
+		"https://p.secure.freee.co.jp/"
 	]
 }
