@@ -18,7 +18,7 @@ const slackFunc = (args) => {
 			emoji = ':ronri_taikin: ';
 		}
 
-		emoji = emoji + ':otsucurry:';
+		emoji = emoji + ':heiten:';
 	}
 
 	window.onload = () => {
